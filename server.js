@@ -1,6 +1,12 @@
 import express from "express";
 import cors from "cors";
 import path from "path"; // Import 'path' to handle directory paths
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 const port = 3000;
@@ -59,8 +65,8 @@ app.use(cors());
 app.use(express.json());
 
 // Serve the static frontend build files
-const __dirname = path.resolve(); // Get the current directory path
-app.use(express.static(path.join(__dirname, "build"))); // Serve 'build' folder
+
+app.use(express.static(path.join(__dirname, "./frontend/build"))); // Serve 'build' folder
 
 // API Endpoints
 app.post("/contacts", (req, res) => {
@@ -130,7 +136,7 @@ app.delete("/contacts/:phoneNumber", (req, res) => {
 
 // Catch-all route to serve React frontend for unhandled routes
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
+  res.sendFile(path.join(__dirname, "./frontend/build/index.html"));
 });
 
 // Start the server
