@@ -9,7 +9,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 8080;
+
+app.use(cors());
+
 
 // Trie Node and Trie Class
 class TrieNode {
@@ -61,7 +64,6 @@ class Trie {
 
 const contacts = new Trie();
 
-app.use(cors());
 app.use(express.json());
 
 // Serve the static frontend build files
