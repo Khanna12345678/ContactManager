@@ -9,7 +9,7 @@ const ContactsManager = () => {
   const [success, setSuccess] = useState('');
   const [showContacts, setShowContacts] = useState(false);
 
-  const API_URL = 'http://localhost:8080';
+ 
 
   // Auto-dismiss notifications after 3 seconds
   useEffect(() => {
@@ -24,7 +24,7 @@ const ContactsManager = () => {
 
   const fetchContacts = async () => {
     try {
-      const response = await fetch(`${API_URL}/contacts`);
+      const response = await fetch("/contacts");
       const data = await response.json();
       setContacts(data);
     } catch (err) {
@@ -39,7 +39,7 @@ const ContactsManager = () => {
   const addContact = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${API_URL}/contacts`, {
+      const response = await fetch('/contacts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newContact),
@@ -59,7 +59,7 @@ const ContactsManager = () => {
 
   const searchContact = async () => {
     try {
-      const response = await fetch(`${API_URL}/contacts/${searchNumber}`);
+      const response = await fetch(`/contacts/${searchNumber}`);
       const data = await response.json();
       setSearchResult(data.contactName);
     } catch (err) {
@@ -69,7 +69,7 @@ const ContactsManager = () => {
 
   const deleteContact = async (phoneNumber) => {
     try {
-      const response = await fetch(`${API_URL}/contacts/${phoneNumber}`, {
+      const response = await fetch(`/contacts/${phoneNumber}`, {
         method: 'DELETE',
       });
       if (response.ok) {
@@ -84,7 +84,7 @@ const ContactsManager = () => {
   const deleteAllContacts = async () => {
     if (window.confirm('Are you sure you want to delete all contacts?')) {
       try {
-        const response = await fetch(`${API_URL}/contacts`, {
+        const response = await fetch('/contacts', {
           method: 'DELETE',
         });
         if (response.ok) {
