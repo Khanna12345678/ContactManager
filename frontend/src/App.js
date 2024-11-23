@@ -9,7 +9,7 @@ const ContactsManager = () => {
   const [success, setSuccess] = useState('');
   const [showContacts, setShowContacts] = useState(false);
 
-  const API_URL = 'http://localhost:3000';
+  const API_URL = 'http://localhost:8080';
 
   // Auto-dismiss notifications after 3 seconds
   useEffect(() => {
