@@ -63,7 +63,9 @@ class Trie {
 
 const contacts = new Trie();
 
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 app.use(express.json());
 
 // Serve the static frontend build files
