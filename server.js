@@ -11,7 +11,6 @@ const __dirname = dirname(__filename);
 const app = express();
 const port = process.env.PORT || 8080;
 
-app.use(cors());
 
 
 // Trie Node and Trie Class
@@ -64,6 +63,7 @@ class Trie {
 
 const contacts = new Trie();
 
+app.use(cors());
 app.use(express.json());
 
 // Serve the static frontend build files
